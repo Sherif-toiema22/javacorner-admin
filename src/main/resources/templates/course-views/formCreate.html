@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="template">
+<head>
+    <meta charset="UTF-8">
+    <title>Update Course</title>
+</head>
+<body>
+<div layout:fragment="content1">
+    <div class="col-md-6 offset-3 mt-3">
+        <form class="form-control" method="post" th:action="@{save}">
+            <div class="mb-3 mt-3">
+                <label for="courseName" class="form-label">Course Name:</label>
+                <input id="courseName" type="text" name="courseName" class="form-control"
+                       th:field="${course.courseName}">
+            </div>
+            <div class="mb-3 mt-3">
+                <label for="courseDuration" class="form-label">Course Duration:</label>
+                <input id="courseDuration" type="text" name="courseDuration" class="form-control"
+                       th:field="${course.courseDuration}">
+            </div>
+            <div class="mb-3 mt-3">
+                <label for="courseDescription" class="form-label">Course Description:</label>
+                <input id="courseDescription" type="text" name="courseDescription" class="form-control"
+                       th:field="${course.courseDescription}">
+            </div>
+            <div class="mb-3 mt-3">
+                <label class="form-label">Instructor:</label>
+                <select th:field="${course.instructor}" name="instructor" class="form-select">
+                    <option th:each="instructor:${listInstructors}"
+                            th:text="${instructor.getFirstName()}+' '+${instructor.getLastName()}"
+                            th:value="${instructor.getInstructorId()}"></option>
+                </select>
+            </div>
+
+            <button type="submit" class="btn btn-primary">Create</button>
+        </form>
+    </div>
+</div>
+</body>
+</html>
